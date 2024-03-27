@@ -4,3 +4,7 @@ main: me.ley.leythings.LeyThings
 api-version: '1.20'
 authors: [Ley]
 description: Just Ley things
+permissions:
+  lab_barrel_tp:
+    description: Permite al jugador usar la teletransportación con barriles.
+    default: false

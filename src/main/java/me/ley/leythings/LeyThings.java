@@ -19,7 +19,6 @@ public final class LeyThings extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("The plugin has loaded correctly");
     }
@@ -43,9 +42,11 @@ public final class LeyThings extends JavaPlugin implements Listener {
                                 Bukkit.getScheduler().runTaskLater(this, () -> cooldownPlayers.remove(player), 156);
                             } else {
                                 player.sendMessage(ChatColor.RED + "You must be in survival mode to use this.");
+                                return;
                             }
                         } else {
                             player.sendMessage(ChatColor.RED + "You do not have permission to use this.");
+                            return;
                         }
                     }
                 }
@@ -57,7 +58,7 @@ public final class LeyThings extends JavaPlugin implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                player.performCommand("screeneffect fullscreen BLACK 5 40 5 freeze " + player.getName());
+                getServer().dispatchCommand(getServer().getConsoleSender(), "screeneffect fullscreen BLACK 5 40 5 freeze " + player.getName());
                 new BukkitRunnable() {
                     @Override
                     public void run() {
@@ -117,7 +118,6 @@ public final class LeyThings extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
         getLogger().info("The plugin has stopped successfully");
     }
 }
